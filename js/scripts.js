@@ -63,3 +63,23 @@ pokemonList = [
   mew,
   mewtwo
 ];
+
+/* The next code line implies: the creation of a for loop that iterates over
+each item in pokemonList. The conditionals check if the height is above two
+certain values. If it is, the notes “Wow, that’s big!” and “Wow, what a gigant
+monster!” will be added to the output. */
+let pokemonName   = '';
+let pokemonHeight = 0;
+for (let i = 0; i < pokemonList.length; i++){
+  pokemonName   = pokemonList[i].name;
+  pokemonHeight = pokemonList[i].height;
+  if (pokemonHeight >= 1.7 && pokemonHeight < 2.0){
+    document.write(pokemonName + ' (' + 'height: '  +  pokemonHeight + ' )'
+    + ' - Wow, that\'s big! <br>');
+  }else if (pokemonHeight >= 2.0){
+    document.write(pokemonName + ' (' + 'height: ' +  pokemonHeight + ' )'
+    + ' - Wow, what a gigant monster! <br>');
+  }else {
+    document.write(pokemonName + ' (' + 'height: ' +  pokemonHeight +' ) <br>');
+  }
+}
