@@ -3,7 +3,7 @@ IIFE will return, and assign the IIFE to that variable.
 Start of wrap of pokemonList array in an IIFE*/
 let pokemonRepository = (function () {
 
-  /* This code line implies: a new variable assigned to an array with
+  /* This code lines implies: a new variable assigned to an array with
   7 of my favourite Pokemon with basic properties; so called: objects */
   let pokemonList = [
     {name: 'Pikachu'   , height: 0.4, weight: 6.0  , types: ['electric']      },
@@ -15,20 +15,69 @@ let pokemonRepository = (function () {
     {name: 'Mewtwo'    , height: 2.0, weight: 122.0, types: ['psychic']       }
   ];
 
-  /* This code line implies: a function should add the Pokemon referred to
+  /* This code lines implies: a function should add the Pokemon referred to
   with item to the pokemonList array */
   function add(pokemon) {
     pokemonList.push(pokemon);
   }
 
-  // This code line implies: a function should return the pokemonList array
+  // This code lines implies: a function should return the pokemonList array
   function getAll() {
     return pokemonList;
   }
 
+  /* This code lines implies: a function to give different css stiles
+  to the created buttons*/
+  function pokemonType(pokemonType, button) {
+    switch (pokemonType) {
+      case 'electric':
+      button.classList.add('electric-pokemon');
+      break;
+      case 'fire':
+      button.classList.add('fire-pokemon');
+      break;
+      case 'fairy':
+      button.classList.add('fairy-pokemon');
+      break;
+      case 'psychic':
+      button.classList.add('psychic-pokemon');
+      break;
+      default:
+    }
+  }
+
+  /* This code lines implies: a function to show the detaild object values
+  in the console */
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
+
+  /* This code lines implies: a function that opens additional information after
+  clicked one of the displayed buttons */
+  function pokemonEventListener(button, pokemon) {
+    button.addEventListener('click', showDetails(pokemon));
+  }
+
+  /* This code lines implies: a function to display each pokemon wich is defined
+  in the pokemonList insaid a button*/
+  function addListItem(pokemon) {
+    let pokemonListElement = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('pokemon-Button-Style');
+    pokemonType (pokemon.types[0], button);
+    listItem.appendChild(button);
+    pokemonListElement.appendChild(listItem);
+    pokemonEventListener(button, pokemon);
+  }
+
+  /* This code lines implies: return all the above funkions and values inside
+  the IIFE to the outside */
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem
   };
 
   // This code line implies: the end of the wrap of pokemonList array in an IIFE
@@ -43,7 +92,6 @@ let charmander = {
   types: ['fire']
 };
 pokemonRepository.add(charmander);
-
 // This code line implies: should return the pokemonList array
 pokemonList = pokemonRepository.getAll();
 
@@ -52,15 +100,7 @@ each item in pokemonList. The conditionals check if the height is above two
 certain values. If it is, the notes “Wow, that’s big!” and “Wow, what a gigant
 monster!” will be added to the output. */
 function pokemonPropertyCheck(pokemon) {
-  if (pokemon.height > 1.7 && pokemon.height < 2.0){
-    document.write('<li>'+ pokemon.name + ' ( height: '  +  pokemon.height + ' )'
-    + ' - Wow, that\'s big! </li>');
-  }else if (pokemon.height >= 2.0){
-    document.write('<li>'+ pokemon.name + ' ( height: ' +  pokemon.height + ' )'
-    + ' - Wow, what a gigant monster! </li>');
-  }else {
-    document.write('<li>'+ pokemon.name + ' ( height: ' +  pokemon.height +' ) </li>');
-  }
+  pokemonRepository.addListItem(pokemon);
 }
 
 pokemonList.forEach(pokemonPropertyCheck);
