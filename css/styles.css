@@ -71,3 +71,19 @@ changing by hover over each single pokemon information button */
 .psychic-pokemon:hover {
 	border: 2px solid #6A4C93;
 }
+
+/* This code lines implies: the scroll functionality of the page */
+main {
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* this css comment is needed,
+to make sure that we have a padding between <main> part and <footer>;
+when ther is an overflow(-y): auto (scrolling option) */
+section::after {
+  content: "";
+  display: block;
+  height: 20px;
+  width: 100%;
+}

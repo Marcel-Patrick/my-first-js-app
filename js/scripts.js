@@ -48,14 +48,14 @@ let pokemonRepository = (function () {
 
   /* This code lines implies: a function to show the detaild object values
   in the console */
-  function showDetails(pokemon) {
+  function showDetails(pokemon, button) {
     console.log(pokemon);
   }
 
   /* This code lines implies: a function that opens additional information after
   clicked one of the displayed buttons */
   function pokemonEventListener(button, pokemon) {
-    button.addEventListener('click', showDetails(pokemon));
+    button.addEventListener('click', showDetails.bind(this, pokemon, button));
   }
 
   /* This code lines implies: a function to display each pokemon wich is defined
