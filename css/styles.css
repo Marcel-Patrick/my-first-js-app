@@ -1,10 +1,7 @@
 /* This code lines implies: the styling of the ul frame, wich holds the displayed
 pokemon information buttons inside */
 .pokemon-list{
-	width: 50%;
-	list-style: none;
-	border: 2px solid gray;
-	padding: 16px;
+	text-align: center;
 }
 
 /* This code lines implies: the styling of the headline */
@@ -20,11 +17,11 @@ h1 {
 /* This code lines implies: the default styling of the pokemon information
 buttons */
 .pokemon-Button-Style {
-	width: 100%;
+	width: 450px;
 	border: none;
-	background-color: black;
-	color: white;
-	padding: 16px 32px;
+	background-color: #FBF6F3;
+	color: black;
+	padding: 16px;
 	text-align: center;
 	font-size: 22px;
 	font-weight: bold;
@@ -33,48 +30,47 @@ buttons */
 	cursor: pointer;
 }
 .pokemon-Button-Style:hover {
-	border: 2px solid black;
-	background-color: white;
-	color: black;
+	background-color: black;
+	color: white;
 }
 
 /* This code lines implies: an individual color styling and behavior of coler
 changing by hover over each single pokemon information button */
 .electric-pokemon {
+	border: 4px solid #FFCA3A;
+}
+.electric-pokemon:hover {
 	background-color: #FFCA3A;
 	color: black;
 }
-.electric-pokemon:hover {
-	border: 2px solid #FFCA3A;
-}
 
 .fire-pokemon {
+	border: 4px solid #FF595E;
+}
+.fire-pokemon:hover {
 	background-color: #FF595E;
 	color: white;
 }
-.fire-pokemon:hover {
-	border: 2px solid #FF595E;
-}
 
 .fairy-pokemon {
+	border: 4px solid #1982C4;
+}
+.fairy-pokemon:hover {
 	background-color: #1982C4;
 	color: white;
 }
-.fairy-pokemon:hover {
-	border: 2px solid #1982C4;
-}
 
 .psychic-pokemon {
-	background-color: #6A4C93;
-	color: white;
+	border: 4px solid #6A4C93;
 }
 .psychic-pokemon:hover {
-	border: 2px solid #6A4C93;
+	background-color: #6A4C93;
+	color: white;
 }
 
 /* This code lines implies: the scroll functionality of the page */
 main {
-  overflow-y: auto;
+  text-align: center;
   padding: 20px;
 }
 
@@ -86,4 +82,10 @@ section::after {
   display: block;
   height: 20px;
   width: 100%;
+}
+@media (max-width:480px) {
+	.pokemon-Button-Style {
+		width: 100%;
+  }
+
 }

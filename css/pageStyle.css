@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital@1&family=Dosis&family=Open+Sans:wght@300&display=swap');
+
+/* For the whole project Amaranth font will be used as default and sans-serif
+as backup font*/
+body{
+  font-family: Amaranth, sans-serif;
+  background-image: url("../img/pokemon-background.png");
+}
+
+/* Remove for all tags the default decoration, and set padding and margine to
+zero */
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* The main navigation bar with blue color=#2c3e50 */
+.nav-bar{
+  height: 80px;
+  background: #2c3e50;
+  opacity: 0.8;
+  transition-duration: 1s;
+}
+
+/* Change opacity of the main navigation bar fron 80% to 100% */
+.nav-bar:hover{
+  opacity: 1;
+  transition-duration: 0.6s;
+}
+
+/* Set the main logo properties */
+.logo{
+  width: 160px;
+  position: absolute;
+  top: 10px;
+  left: 40px;
+}
+
+/* Set the global properties for the item list like the position and the
+distance between */
+.nav-bar-list{
+  float: right;
+  margin-right: 25px;
+}
+
+/* Set the properties for each item in the navigation bar*/
+.nav-bar-item{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 15px;
+}
+
+/* Set item link properties since each item is designed as a link */
+.nav-bar-item a{
+  position: relative;
+  color: white;
+  padding: 5px 0;
+  font-size: 22px;
+}
+
+/* Add underline to the item. The underline will be showen only when mouse is
+on the top of the selected item for that scaleX will be initiated with zero */
+.nav-bar-item a:before{
+  position: absolute;
+  content: '';
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s linear;
+}
+
+/* Show the underline bar by setting the scaleX to 1 */
+.nav-bar-item a:hover:before{
+  transform: scaleX(1);
+  transform-origin: center;
+}
+
+/* Add  properties for the two icons that will be used with small media */
+#btn,
+#cancel{
+  float: right;
+  margin-top: 15px;
+  margin-right: 20px;
+  height: 40px;
+  cursor: pointer;
+  display: none;
+}
+
+/* the check box will be hided since it s used only for displaying or not
+the icon menu */
+#check{
+  display: none;
+}
+
+/* when media is less then 850px change logo and navigation bar items size*/
+@media (max-width:850px) {
+  /* reduce logo size and arrange logo position */
+  .logo{
+    top: 14px;
+    width: 140px;
+  }
+
+  /* reduce font size from 22px to 19px */
+  .nav-bar-item a{
+    font-size: 19px;
+  }
+}
+
+/* Set the icon menu logic when media is less than 700px*/
+@media (max-width:700px) {
+  /* set menu icon as default icon */
+  label #btn{
+    display: block;
+  }
+/* set new logo position to the center */
+  .logo{
+    display: block;
+    margin-left: 30%;
+  }
+/* Set navigation bar properties to vertical bar with blue background color*/
+  .nav-bar-list{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #34495e;
+    top: 85px;
+    left: -100%; /* hide menue when is not checked */
+    text-align: center;
+    transition: all 0.5s;
+
+  }
+  /* Set display to block to change the menu from horizantal to vertical */
+  .nav-bar-item{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  /* show menu*/
+  #check:checked ~ .nav-bar-list{
+    left: 0;
+  }
+  /* when btn is clicked hide menu icon*/
+  #check:checked ~ label #btn{
+    display: none;
+  }
+  /* when cancel is clicked diplay cancel icon*/
+  #check:checked ~ label #cancel{
+    display: block;
+  }
+}
+
+/* when media is less than 350px hide logo and center menu button*/
+@media (max-width:350px) {
+  /* hide logo*/
+  .logo{
+    display: none;
+  }
+  /* center menu button */
+  .nav-bar{
+    display: flex;
+    justify-content: center;
+  }
+  #btn,
+  #cancel{
+    margin-right: 0;
+  }
+
+}
