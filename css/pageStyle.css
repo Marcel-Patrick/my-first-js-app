@@ -118,11 +118,8 @@ the icon menu */
   label #btn{
     display: block;
   }
-/* set new logo position to the center */
-  .logo{
-    display: block;
-    margin-left: 30%;
-  }
+/* set new logo position to the left */
+
 /* Set navigation bar properties to vertical bar with blue background color*/
   .nav-bar-list{
     position: fixed;
