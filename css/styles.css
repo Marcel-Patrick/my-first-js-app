@@ -36,56 +36,32 @@ buttons */
 
 /* This code lines implies: an individual color styling and behavior of coler
 changing by hover over each single pokemon information button */
-.electric-pokemon {
+.pokemon-color-type {
 	border: 4px solid #FFCA3A;
 }
-.electric-pokemon:hover {
+.pokemon-color-type:hover {
 	background-color: #FFCA3A;
 	color: black;
 }
 
-.fire-pokemon {
-	border: 4px solid #FF595E;
-}
-.fire-pokemon:hover {
-	background-color: #FF595E;
-	color: white;
-}
-
-.fairy-pokemon {
-	border: 4px solid #1982C4;
-}
-.fairy-pokemon:hover {
-	background-color: #1982C4;
-	color: white;
-}
-
-.psychic-pokemon {
-	border: 4px solid #6A4C93;
-}
-.psychic-pokemon:hover {
-	background-color: #6A4C93;
-	color: white;
-}
 
 /* This code lines implies: the scroll functionality of the page */
 main {
-  text-align: center;
-  padding: 20px;
+	text-align: center;
+	padding: 20px;
 }
 
 /* this css comment is needed,
 to make sure that we have a padding between <main> part and <footer>;
 when ther is an overflow(-y): auto (scrolling option) */
 section::after {
-  content: "";
-  display: block;
-  height: 20px;
-  width: 100%;
+	content: "";
+	display: block;
+	height: 20px;
+	width: 100%;
 }
 @media (max-width:480px) {
 	.pokemon-Button-Style {
 		width: 100%;
-  }
-
+	}
 }

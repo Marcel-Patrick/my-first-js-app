@@ -3,17 +3,11 @@ IIFE will return, and assign the IIFE to that variable.
 Start of wrap of pokemonList array in an IIFE*/
 let pokemonRepository = (function () {
 
-  /* This code lines implies: a new variable assigned to an array with
-  7 of my favourite Pokemon with basic properties; so called: objects */
-  let pokemonList = [
-    {name: 'Pikachu'   , height: 0.4, weight: 6.0  , types: ['electric']      },
-    {name: 'Charizard' , height: 1.7, weight: 90.5 , types: ['fire','flying'] },
-    {name: 'Ninetales' , height: 1.1, weight: 19.9 , types: ['fire']          },
-    {name: 'Jigglypuff', height: 0.5, weight: 5.5  , types: ['fairy','normal']},
-    {name: 'Arcanine'  , height: 1.9, weight: 155.0, types: ['fire']          },
-    {name: 'Mew'       , height: 0.4, weight: 4.0  , types: ['psychic']       },
-    {name: 'Mewtwo'    , height: 2.0, weight: 122.0, types: ['psychic']       }
-  ];
+  /* This code line implies: an empty array with later shall show up the objects
+  (Pokemon) from an external API in my personal pokemaonList */
+  let pokemonList = [];
+  /* This code line implies: the url to the external API */
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   /* This code lines implies: a function should add the Pokemon referred to
   with item to the pokemonList array */
@@ -26,32 +20,6 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  /* This code lines implies: a function to give different css stiles
-  to the created buttons*/
-  function pokemonType(pokemonType, button) {
-    switch (pokemonType) {
-      case 'electric':
-      button.classList.add('electric-pokemon');
-      break;
-      case 'fire':
-      button.classList.add('fire-pokemon');
-      break;
-      case 'fairy':
-      button.classList.add('fairy-pokemon');
-      break;
-      case 'psychic':
-      button.classList.add('psychic-pokemon');
-      break;
-      default:
-    }
-  }
-
-  /* This code lines implies: a function to show the detaild object values
-  in the console */
-  function showDetails(pokemon, button) {
-    console.log(pokemon);
-  }
-
   /* This code lines implies: a function that opens additional information after
   clicked one of the displayed buttons */
   function pokemonEventListener(button, pokemon) {
@@ -59,48 +27,76 @@ let pokemonRepository = (function () {
   }
 
   /* This code lines implies: a function to display each pokemon wich is defined
-  in the pokemonList insaid a button*/
+  in the pokemonList inside a button*/
   function addListItem(pokemon) {
     let pokemonListElement = document.querySelector('.pokemon-list');
     let listItem = document.createElement('li');
     let button = document.createElement('button');
     button.innerText = pokemon.name;
     button.classList.add('pokemon-Button-Style');
-    pokemonType (pokemon.types[0], button);
+    // pokemonType (pokemon.types[0], button);
     listItem.appendChild(button);
     pokemonListElement.appendChild(listItem);
     pokemonEventListener(button, pokemon);
   }
 
+  /* This code lines implies: a function to load each pokemon wich is defined
+  in the API URL and puch it inside the pokemonList array */
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
+
+  /* This code lines implies: a function to load the details of each pokemon
+  wich is defined in the API URL and puch it inside the pokemonList array */
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      // Now we add the details to the item
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
+
+  /* This code lines implies: a function to show or display the details of each
+  pokemon wich now inside the pokemonList array */
+  function showDetails(item) {
+    loadDetails(item);
+    console.log(item);
+  }
+
   /* This code lines implies: return all the above funkions and values inside
   the IIFE to the outside */
   return {
-    add: add,
-    getAll: getAll,
-    addListItem: addListItem
+    add         : add,
+    getAll      : getAll,
+    addListItem : addListItem,
+    loadList    : loadList,
+    loadDetails : loadDetails,
+    showDetails : showDetails
   };
 
   // This code line implies: the end of the wrap of pokemonList array in an IIFE
 }) ();
 
-/* This code line implies: should add the Pokemon referred to with item
-to the pokemonList array */
-let charmander = {
-  name: 'Charmander',
-  height: 0.6,
-  weight: 8.5,
-  types: ['fire']
-};
-pokemonRepository.add(charmander);
-// This code line implies: should return the pokemonList array
-pokemonList = pokemonRepository.getAll();
-
-/* The next code line implies: the creation of a forEach loop that iterates over
-each item in pokemonList. The conditionals check if the height is above two
-certain values. If it is, the notes “Wow, that’s big!” and “Wow, what a gigant
-monster!” will be added to the output. */
-function pokemonPropertyCheck(pokemon) {
-  pokemonRepository.addListItem(pokemon);
-}
-
-pokemonList.forEach(pokemonPropertyCheck);
+pokemonRepository.loadList().then(function () {
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
+});

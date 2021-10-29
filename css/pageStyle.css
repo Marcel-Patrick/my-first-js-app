@@ -5,6 +5,7 @@ as backup font*/
 body{
   font-family: Amaranth, sans-serif;
   background-image: url("../img/pokemon-background.png");
+  background-attachment: fixed;
 }
 
 /* Remove for all tags the default decoration, and set padding and margine to
@@ -20,8 +21,13 @@ zero */
 .nav-bar{
   height: 80px;
   background: #2c3e50;
-  opacity: 0.8;
+  /*opacity: 0.8;*/
   transition-duration: 1s;
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  margin-bottom: auto;
 }
 
 /* Change opacity of the main navigation bar fron 80% to 100% */
@@ -81,6 +87,11 @@ on the top of the selected item for that scaleX will be initiated with zero */
   transform-origin: center;
 }
 
+/* Main content */
+main {
+  margin-top: 80px;
+}
+
 /* Add  properties for the two icons that will be used with small media */
 #btn,
 #cancel{
@@ -105,7 +116,6 @@ the icon menu */
     top: 14px;
     width: 140px;
   }
-
   /* reduce font size from 22px to 19px */
   .nav-bar-item a{
     font-size: 19px;
@@ -118,9 +128,9 @@ the icon menu */
   label #btn{
     display: block;
   }
-/* set new logo position to the left */
+  /* set new logo position to the left */
 
-/* Set navigation bar properties to vertical bar with blue background color*/
+  /* Set navigation bar properties to vertical bar with blue background color*/
   .nav-bar-list{
     position: fixed;
     width: 100%;
@@ -130,22 +140,25 @@ the icon menu */
     left: -100%; /* hide menue when is not checked */
     text-align: center;
     transition: all 0.5s;
-
   }
+
   /* Set display to block to change the menu from horizantal to vertical */
   .nav-bar-item{
     display: block;
     margin: 50px 0;
     line-height: 30px;
   }
+
   /* show menu*/
   #check:checked ~ .nav-bar-list{
     left: 0;
   }
+
   /* when btn is clicked hide menu icon*/
   #check:checked ~ label #btn{
     display: none;
   }
+
   /* when cancel is clicked diplay cancel icon*/
   #check:checked ~ label #cancel{
     display: block;
@@ -167,5 +180,4 @@ the icon menu */
   #cancel{
     margin-right: 0;
   }
-
 }
