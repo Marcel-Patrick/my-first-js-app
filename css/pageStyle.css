@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Amaranth:ital@1&family=Dosis&family=Open+Sans:wght@300&display=swap');
 
-/* For the whole project Amaranth font will be used as default and sans-serif
-as backup font*/
-body{
-  font-family: Amaranth, sans-serif;
-  background-image: url("../img/pokemon-background.png");
-  background-attachment: fixed;
-}
-
 /* Remove for all tags the default decoration, and set padding and margine to
 zero */
 *{
@@ -17,17 +9,32 @@ zero */
   text-decoration: none;
 }
 
+/* For the whole project Amaranth font will be used as default and sans-serif
+as backup font*/
+html,
+body,
+.page {
+  height: 100%; /* needed for proper layout */
+  margin: auto 0;
+}
+
+body{
+  font-family: Amaranth, sans-serif;
+  background-image: url("../img/pokemon-background.png");
+  background-attachment: fixed;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
 /* The main navigation bar with blue color=#2c3e50 */
 .nav-bar{
   height: 80px;
   background: #2c3e50;
-  /*opacity: 0.8;*/
+  opacity: 0.8;
   transition-duration: 1s;
-  overflow: hidden;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
-  margin-bottom: auto;
 }
 
 /* Change opacity of the main navigation bar fron 80% to 100% */
@@ -87,9 +94,8 @@ on the top of the selected item for that scaleX will be initiated with zero */
   transform-origin: center;
 }
 
-/* Main content */
-main {
-  margin-top: 80px;
+main{
+  overflow-y: auto;
 }
 
 /* Add  properties for the two icons that will be used with small media */

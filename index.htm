@@ -8,30 +8,33 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <nav class="nav-bar">
-      <input type="checkbox" id="check">
-      <label for="check">
-        <img src="img/icon/bars-solid.svg" alt="menu"  id="btn">
-        <img src="img/icon/times-solid.svg" alt="cancel" id="cancel">
-      </label>
-      <img src="img/pokemon-logo.png" alt="pokemon-logo" class="logo">
-      <ul class="nav-bar-list">
-        <li class="nav-bar-item"> <a href="#">Home    </a></li>
-        <li class="nav-bar-item"> <a href="#">About   </a></li>
-        <li class="nav-bar-item"> <a href="#">Services</a></li>
-        <li class="nav-bar-item"> <a href="#">Contact </a></li>
-        <li class="nav-bar-item"> <a href="#">Feedback</a></li>
+  <div class="page">
+    <header>
+      <nav class="nav-bar">
+        <input type="checkbox" id="check">
+        <label for="check">
+          <img src="img/icon/bars-solid.svg" alt="menu"  id="btn">
+          <img src="img/icon/times-solid.svg" alt="cancel" id="cancel">
+        </label>
+        <img src="img/pokemon-logo.png" alt="pokemon-logo" class="logo">
+        <ul class="nav-bar-list">
+          <li class="nav-bar-item"> <a href="#">Home    </a></li>
+          <li class="nav-bar-item"> <a href="#">About   </a></li>
+          <li class="nav-bar-item"> <a href="#">Services</a></li>
+          <li class="nav-bar-item"> <a href="#">Contact </a></li>
+          <li class="nav-bar-item"> <a href="#">Feedback</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <ul class='pokemon-list'>
       </ul>
-    </nav>
-  </header>
-  <main>
-    <ul class='pokemon-list'>
-    </ul>
-  </main>
-  <footer>
+    </main>
+    <footer>
 
-  </footer>
+    </footer>
+  </div>
+
   <script src="js/promise-polyfill.js"></script>
   <script src="js/fetch.umd.js"></script>
   <script src="js/scripts.js"></script>
