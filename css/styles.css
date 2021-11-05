@@ -1,85 +1,16 @@
-/*Modal style*/
-#modal-container {
-	position: fixed;
-	padding: 20px;
-	box-sizing: border-box;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital@1&family=Dosis&family=Open+Sans:wght@300&display=swap');
 
-	/* to show it above other content */
-	z-index: 999;
-
-	/* to allow scrolling if the screen is not high enough*/
-	overflow: auto;
-
-	/* this is used to center the modal */
-	display: grid;
-	text-align: center;
+body{
+	font-family: Amaranth, sans-serif;
+	background-image: url("../img/pokemon-background.png");
+	background-attachment: fixed;
 }
 
-.modal {
-	margin: auto;
-	display: inline-block;
-	box-sizing: border-box;
-	background: #fff;
-	padding: 15px;
-	width: 100%;
-	max-width: 700px;
-	text-align: left;
-}
-
-.modal-close {
-	float: right;
-	-webkit-appearance: none;
-	border: 0;
-	background: none;
-	color: black;
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-.modal h1 {
-	margin-top: 0;
-	margin-bottom: 10px;
-	font-size: 70px;
-}
-
-.modal p {
-	margin-bottom: 5px;
-	font-size: 24px;
-}
-.modal-img{
-	max-width: 100%;
-	max-height: 100%;
-	float: right;
-}
-
-#modal-container {
-	display: none;
-}
-
-#modal-container.is-visible {
-	/* CSS for modal container - add your own desired CSS styles here */
-	display: block;
-}
-
-/* This code lines implies: the styling of the ul frame, wich holds the displayed
-pokemon information buttons inside */
-.pokemon-list{
-	text-align: center;
-}
-
-/* This code lines implies: the styling of the headline */
-h1 {
-	text-align: center;
-}
-
-/* This code lines implies: the positoning of the pokemon information buttons */
-.pokemon-list>li {
-	text-align: center;
+/* li style */
+.liStyle{
+	background-color: transparent ;
+	border: none;
+	padding: 0;
 }
 
 /* This code lines implies: the default styling of the pokemon information
@@ -111,31 +42,24 @@ changing by hover over each single pokemon information button */
 	background-color: #FFCA3A;
 	color: black;
 }
-
+.nav-item{
+	float: right;
+}
 /* This code lines implies: the scroll functionality of the page */
 main {
 	text-align: center;
 	padding: 20px;
+	margin-top: 120px;
 }
 
-/* this css comment is needed,
-to make sure that we have a padding between <main> part and <footer>;
-when ther is an overflow(-y): auto (scrolling option) */
-section::after {
-	content: "";
-	display: block;
-	height: 20px;
-	width: 100%;
-}
-
-@media (max-width:480px) {
+@media (max-width:500px) {
 	.pokemon-Button-Style {
 		width: 100%;
 	}
 }
 
 /*START: Pokemon button style based on their types*/
-/* BUG pokemon */
+/* bug pokemon */
 .bug-pokemon {
 	border: 4px solid #43AA8B;
 	transition-duration: 0.6s;
@@ -316,25 +240,3 @@ section::after {
 	transition-duration: 0.6s;
 }
 /*END: Pokemon button style based on their types*/
-@media (max-width:700px) {
-	.modal h1 {
-		margin-bottom: 6px;
-		font-size: 40px;
-	}
-
-	.modal p {
-		margin-bottom: 8px;
-		font-size: 20px;
-	}
-}
-@media (max-width:350px) {
-	.modal h1 {
-		margin-bottom: 2px;
-		font-size: 24px;
-	}
-
-	.modal p {
-		margin-bottom: 5px;
-		font-size: 16px;
-	}
-}

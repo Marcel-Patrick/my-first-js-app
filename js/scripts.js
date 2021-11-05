@@ -2,77 +2,47 @@
 IIFE will return, and assign the IIFE to that variable.
 Start of wrap of pokemonList array in an IIFE*/
 let pokemonRepository = (function () {
-  /*Start Modal implementatiom */
-  //Create a variable that contains the place of the container
-  let modalContainer = document.querySelector('#modal-container');
+  /* This code line implies: an empty array with later shall show up the objects
+  (Pokemon) from an external API in my personal pokemaonList */
+  let pokemonList = [];
+  /* This code line implies: the url to the external API */
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   /* This function is used to Create a modal when pokemon is selected from
   the list */
   function showModal(pokemon){
-    modalContainer.innerHTML='';
-    let type = pokemon.types[0].type.name;
-    //create new button that contains pokemon details
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
-    modal.classList.add(type+'-pokemon');
-    //Create close button
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'X';
-    closeButtonElement.addEventListener('click', hideModal);
+    //Get pokemon type
+    let pokemonType = pokemon.types[0].type.name;
+    //Get image URL
+    let imgUrl = pokemon.sprites.other['official-artwork']['front_default'];
 
-    //Create Header tag that contains pokemon name
-    let titleElement = document.createElement('h1');
-    titleElement.innerText = pokemon.forms[0].name;
-    //Create a paragraph tag contains pokemon height
-    let heightElement = document.createElement('p');
-    heightElement.innerText = 'Height: '+pokemon.height/10 +' m';
-    //Create a paragraph tag contains pokemon type
-    let typeElement = document.createElement('p');
-    typeElement.innerText = 'Type: '+type;
-    //Add pokemon imageUrl
-    let img = document.createElement('img');
-    img.classList.add('modal-img');
-    img.src = pokemon.sprites.other['official-artwork']['front_default'];
+    //Select the title and the body of the Modal
+    let modalTitle  = $('.modal-title');
+    let modalBody   = $('.modal-body');
 
-    //Add the new created tags
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(heightElement);
-    modal.appendChild(typeElement);
-    modal.appendChild(img);
+    //Reset the modal content
+    modalTitle.empty();
+    modalBody.empty();
 
-    modalContainer.appendChild(modal);
-    //Add class is-visible to show the modal
-    modalContainer.classList.add('is-visible');
+    //Creating element for name in Modal content
+    let nameElement   = $('<h1>' + pokemon.name + '</h1>');
+    //Creating img in Modal content
+    let imageElement  = $('<img class="modal-img" style="width:100%">')
+    imageElement.attr('src', imgUrl);
+    imageElement.addClass(pokemonType+'-pokemon');
+    //Creating element for height in Modal content
+    let heightElement = $('<p> Height: ' + pokemon.height/10 + ' m</p>'+
+                          '<span class="sr-only"> height '+pokemon.height/10+' meter</span>');
+    //Creating element for type in Modal content
+    let typeElement   = $('<p> Type: ' + pokemonType + '</p>'+
+                          '<span class="sr-only">Type '+pokemonType+'</span>');
+
+    //Add the new created Modal
+    modalTitle.append(nameElement);
+    modalBody.append(imageElement);
+    modalBody.append(heightElement);
+    modalBody.append(typeElement);
   }
-  /* This function is used to hide Modal when the use click on cancel or outside
-  of the modal or escape keyboard button */
-  function hideModal() {
-    modalContainer.classList.remove('is-visible');
-  }
-  /* Hide Modal when escape keyboard button is pressed */
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
-  });
-  /* Hide Modal when we click outside the Modal */
-  modalContainer.addEventListener('click', (e) => {
-    // Since this is also triggered when clicking INSIDE the modal
-    // We only want to close if the user clicks directly on the overlay
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
-  /*End of Modal Creation */
-  /* This code line implies: an empty array with later shall show up the objects
-  (Pokemon) from an external API in my personal pokemaonList */
-  let pokemonList = [];
-
-  /* This code line implies: the url to the external API */
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   /* This code lines implies: a function should add the Pokemon referred to
   with item to the pokemonList array */
@@ -88,44 +58,22 @@ let pokemonRepository = (function () {
   /* This code lines implies: a function that opens additional information after
   clicked one of the displayed buttons */
   function pokemonEventListener(button, pokemon) {
-    button.addEventListener('click', showDetails.bind(this, pokemon, button));
-  }
-
-  /* This code lines implies: a function that show up the
-  message: "Loading Pokemon List..."
-  before & while fetch content from pokemon API */
-  function showLoadingMessage(){
-    let loadingMsg = document.querySelector('main');
-    let button = document.createElement('button');
-    button.innerText = 'Loading Pokemon List...';
-    button.classList.add('pokemon-Button-Style');
-    loadingMsg.appendChild(button);
-  }
-
-  /* This code lines implies: a function that hide the
-  message: "Loading Pokemon List..."
-  after fetched and display all content from pokemon API */
-  function hideLoadingMessage(){
-    let loadingMsg = document.querySelector('main > button');
-    loadingMsg.parentElement.removeChild(loadingMsg);
+    button.on('click', showDetails.bind(this, pokemon, button));
   }
 
   /* This code lines implies: a function to load the details of each pokemon
   wich is defined in the API URL+ */
   function loadDetails(item) {
     let url = item.detailsUrl;
-    showLoadingMessage();
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      hideLoadingMessage();
       // Now we add the details to the item
       showModal(details);
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
     }).catch(function (e) {
-      hideLoadingMessage();
       console.error(e);
     });
   }
@@ -140,7 +88,7 @@ let pokemonRepository = (function () {
     }).then(function (details) {
       let type = details.types[0].type.name;
       //call the class based on the pokemon type
-      button.classList.add(type+'-pokemon');
+      button.addClass(type+'-pokemon');
     }).catch(function (e) {
       console.error(e);
     });
@@ -149,21 +97,24 @@ let pokemonRepository = (function () {
   /* This code lines implies: a function to display each pokemon wich is defined
   in the pokemonList inside a button*/
   function addListItem(pokemon) {
-    let pokemonListElement = document.querySelector('.pokemon-list');
-    let listItem = document.createElement('li');
-    let button = document.createElement('button');
-    button.innerText = pokemon.name;
-    button.classList.add('pokemon-Button-Style');
+    let pokemonListElement = $('.pokemon-list');
+    let listItem = $('<li><span class="sr-only">'+pokemon.name+'</span></li>');
+    listItem.addClass('list-group-item liStyle');
+    let button = $('<button></button>');
+    button.addClass('pokemon-Button-Style btn');
+    button.attr('data-toggle', 'modal');
+    button.attr('data-target', '#pokemonModal');
+    button.text(pokemon.name);
+
     addColor(pokemon, button);
-    listItem.appendChild(button);
-    pokemonListElement.appendChild(listItem);
+    listItem.append(button);
+    pokemonListElement.append(listItem);
     pokemonEventListener(button, pokemon);
   }
 
   /* This code lines implies: a function to load each pokemon wich is defined
   in the API URL and puch it inside the pokemonList array */
   function loadList() {
-    showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
@@ -174,9 +125,7 @@ let pokemonRepository = (function () {
         };
         add(pokemon);
       });
-      hideLoadingMessage();
     }).catch(function (e) {
-      hideLoadingMessage();
       console.error(e);
     })
   }
