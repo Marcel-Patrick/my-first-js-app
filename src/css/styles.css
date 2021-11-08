@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Amaranth:ital@1&family=Dosis&family=Open+Sans:wght@300&display=swap");
+
+body {
+  font-family: Amaranth, sans-serif;
+  background-image: url("../img/pokemon-background.png");
+  background-attachment: fixed;
+}
+
+/* li style */
+.liStyle {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* This code lines implies: the default styling of the pokemon information
+buttons */
+.pokemon-Button-Style {
+  width: 450px;
+  border: none;
+  background-color: #fbf6f3;
+  color: black;
+  padding: 16px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 4px 2px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+.pokemon-Button-Style:hover {
+  background-color: black;
+  color: white;
+}
+
+/* This code lines implies: an individual color styling and behavior of coler
+changing by hover over each single pokemon information button */
+.pokemon-color-type {
+  border: 4px solid #ffca3a;
+}
+.pokemon-color-type:hover {
+  background-color: #ffca3a;
+  color: black;
+}
+.nav-item {
+  float: right;
+}
+
+/* This code lines implies: the scroll functionality of the page */
+main {
+  text-align: center;
+  padding: 20px;
+  margin-top: 120px;
+}
+
+@media (max-width: 500px) {
+  .pokemon-Button-Style {
+    width: 100%;
+  }
+}
+
+/*START: Pokemon button style based on their types*/
+/* bug pokemon */
+.bug-pokemon {
+  border: 4px solid #43aa8b;
+  transition-duration: 0.6s;
+}
+.bug-pokemon:hover {
+  background-color: #43aa8b;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* DARK pokemon */
+.dark-pokemon {
+  border: 4px solid #3d405b;
+  transition-duration: 0.6s;
+}
+.dark-pokemon:hover {
+  background-color: #3d405b;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* DRAGON pokemon */
+.dragon-pokemon {
+  border: 4px solid #577590;
+  transition-duration: 0.6s;
+}
+.dragon-pokemon:hover {
+  background-color: #577590;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* ELECTRIC pokemon */
+.electric-pokemon {
+  border: 4px solid #f9c74f;
+  transition-duration: 0.6s;
+}
+.electric-pokemon:hover {
+  background-color: #f9c74f;
+  color: black;
+  transition-duration: 0.6s;
+}
+/* FAIRY pokemon */
+.fairy-pokemon {
+  border: 4px solid #f94144;
+  transition-duration: 0.6s;
+}
+.fairy-pokemon:hover {
+  background-color: #f94144;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* FIGHTING pokemon */
+.fighting-pokemon {
+  border: 4px solid #9d0208;
+  transition-duration: 0.6s;
+}
+.fighting-pokemon:hover {
+  background-color: #9d0208;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* FIRE pokemon */
+.fire-pokemon {
+  border: 4px solid #e85d04;
+  transition-duration: 0.6s;
+}
+.fire-pokemon:hover {
+  background-color: #e85d04;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* FLYING pokemon */
+.flying-pokemon {
+  border: 4px solid #2c7da0;
+  transition-duration: 0.6s;
+}
+.flying-pokemon:hover {
+  background-color: #2c7da0;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* GHOST pokemon */
+.ghost-pokemon {
+  border: 4px solid #6d597a;
+  transition-duration: 0.6s;
+}
+.gost-pokemon:hover {
+  background-color: #6d597a;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* GRASS pokemon */
+.grass-pokemon {
+  border: 4px solid #90be6d;
+  transition-duration: 0.6s;
+}
+.grass-pokemon:hover {
+  background-color: #90be6d;
+  color: black;
+  transition-duration: 0.6s;
+}
+/* GROUND pokemon */
+.ground-pokemon {
+  border: 4px solid #723d46;
+  transition-duration: 0.6s;
+}
+.ground-pokemon:hover {
+  background-color: #723d46;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* ICE pokemon */
+.ice-pokemon {
+  border: 4px solid #caf0f8;
+  transition-duration: 0.6s;
+}
+.ice-pokemon:hover {
+  background-color: #caf0f8;
+  color: black;
+  transition-duration: 0.6s;
+}
+/* NORMAL pokemon */
+.normal-pokemon {
+  border: 4px solid #edddd4;
+  transition-duration: 0.6s;
+}
+.normal-pokemon:hover {
+  background-color: #edddd4;
+  color: black;
+  transition-duration: 0.6s;
+}
+/* POISON pokemon */
+.poison-pokemon {
+  border: 4px solid #973aa8;
+  transition-duration: 0.6s;
+}
+.poison-pokemon:hover {
+  background-color: #973aa8;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* PSYCHIC pokemon */
+.psychic-pokemon {
+  border: 4px solid #d55d92;
+  transition-duration: 0.6s;
+}
+.psychic-pokemon:hover {
+  background-color: #d55d92;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* ROCK pokemon */
+.rock-pokemon {
+  border: 4px solid #6c584c;
+  transition-duration: 0.6s;
+}
+.rock-pokemon:hover {
+  background-color: #6c584c;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* STEEL pokemon */
+.steel-pokemon {
+  border: 4px solid #5e6472;
+  transition-duration: 0.6s;
+}
+.steel-pokemon:hover {
+  background-color: #5e6472;
+  color: white;
+  transition-duration: 0.6s;
+}
+/* WATER pokemon */
+.water-pokemon {
+  border: 4px solid #bdd5ea;
+  transition-duration: 0.6s;
+}
+.water-pokemon:hover {
+  background-color: #bdd5ea;
+  color: black;
+  transition-duration: 0.6s;
+}
+/*END: Pokemon button style based on their types*/
