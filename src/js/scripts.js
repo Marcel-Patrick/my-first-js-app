@@ -39,21 +39,21 @@ let pokemonRepository = (function () {
     //Creating element for height in Modal content
     let $heightElement = $(
       '<p> Height: ' +
-        pokemon.height / 10 +
-        ' m</p>' +
-        '<span class="sr-only"> height ' +
-        pokemon.height / 10 +
-        ' meter</span>'
+      pokemon.height / 10 +
+      ' m</p>' +
+      '<span class="sr-only"> height ' +
+      pokemon.height / 10 +
+      ' meter</span>'
     );
 
     //Creating element for type in Modal content
     let $typeElement = $(
       '<p> Type: ' +
-        pokemonType +
-        '</p>' +
-        '<span class="sr-only">Type ' +
-        pokemonType +
-        '</span>'
+      pokemonType +
+      '</p>' +
+      '<span class="sr-only">Type ' +
+      pokemonType +
+      '</span>'
     );
 
     //Add the new created Modal
@@ -85,19 +85,19 @@ let pokemonRepository = (function () {
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (details) {
-        // Now we add the details to the item
-        showModal(details);
-        item.imageUrl = details.sprites.front_default;
-        item.height = details.height;
-        item.types = details.types;
-      })
-      .catch(function (e) {
-        console.error(e);
-      });
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (details) {
+      // Now we add the details to the item
+      showModal(details);
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    })
+    .catch(function (e) {
+      console.error(e);
+    });
   }
 
   /* This code lines implies: a function to add a specific color to each pokemon
@@ -106,18 +106,18 @@ let pokemonRepository = (function () {
   function addColor(pokemon, button) {
     let url = pokemon.detailsUrl;
     return fetch(url)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (details) {
-        let type = details.types[0].type.name;
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (details) {
+      let type = details.types[0].type.name;
 
-        //call the class based on the pokemon type
-        button.addClass(type + '-pokemon');
-      })
-      .catch(function (e) {
-        console.error(e);
-      });
+      //call the class based on the pokemon type
+      button.addClass(type + '-pokemon');
+    })
+    .catch(function (e) {
+      console.error(e);
+    });
   }
 
   /* This code lines implies: a function to display each pokemon wich is defined
@@ -144,21 +144,21 @@ let pokemonRepository = (function () {
   in the API URL and puch it inside the pokemonList array */
   function loadList() {
     return fetch(apiUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (json) {
-        json.results.forEach(function (item) {
-          let pokemon = {
-            name: item.name,
-            detailsUrl: item.url,
-          };
-          add(pokemon);
-        });
-      })
-      .catch(function (e) {
-        console.error(e);
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url,
+        };
+        add(pokemon);
       });
+    })
+    .catch(function (e) {
+      console.error(e);
+    });
   }
 
   /* This code lines implies: a function to show or display the details of each
@@ -188,5 +188,14 @@ display its contents to the outside */
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
+  });
+});
+
+$(document).ready(function () {
+  $('#search-input').on('keyup', function () {
+    var value = $(this).val().toLowerCase();
+    $('.pokemon-list .list-group-item').filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
   });
 });
